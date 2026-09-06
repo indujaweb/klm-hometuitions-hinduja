@@ -1,0 +1,72 @@
+===================================================================
+FREELANCER.COM PORTFOLIO UPLOAD COPY-PASTE DETAILS
+KATKOJWAL KRISHNA - WEB DEVELOPER & DEVOPS
+===================================================================
+
+-------------------------------------------------------------------
+LIVE PORTFOLIO URL TO PASTE IN 'LINK' / 'ITEM URL' FIELD:
+https://portfolio-websitekk.netlify.app
+-------------------------------------------------------------------
+
+===================================================================
+PORTFOLIO ITEM 1: FULL-STACK & AWS DEVOPS PLATFORM
+===================================================================
+
+[ITEM TITLE]
+Katkojwal Krishna - Full-Stack Web Development & AWS DevOps Portfolio
+
+[LINK / ITEM URL FIELD]
+https://portfolio-websitekk.netlify.app
+
+[CATEGORY]
+Website, IT & Software -> Web Development / DevOps / Cloud Architecture
+
+[SKILLS / TAGS]
+Web Development, PHP, WordPress, Amazon Web Services (AWS), DevOps, Docker, React.js, Tailwind CSS, Graphic Design
+
+[PROJECT DESCRIPTION]
+Official Portfolio Website of Katkojwal Krishna — Web Developer, PHP Developer, WordPress Specialist, Graphic Designer, and AWS & DevOps Enthusiast.
+
+Key Highlights & Technical Stack:
+• Live Site: https://portfolio-websitekk.netlify.app
+• Full-Stack Web Development: PHP, WordPress custom themes, React.js, HTML5, CSS3, Tailwind CSS, JavaScript.
+• Cloud & DevOps Automation: AWS Cloud Infrastructure, Docker containerization, Kubernetes (EKS), Jenkins CI/CD pipeline.
+• Graphic & UI/UX Design: Sleek dark modern interface, pixel-perfect responsive layouts, high-converting visual hierarchy.
+
+Specializations: Custom Website Development, CRM Platforms, Cloud Architecture & Automation, PHP/WordPress Solutions.
+
+
+===================================================================
+PORTFOLIO ITEM 2: ESTATEFLOW CRM PLATFORM
+===================================================================
+
+[ITEM TITLE]
+EstateFlow CRM - Real Estate Management Platform
+
+[LINK / ITEM URL FIELD]
+https://portfolio-websitekk.netlify.app
+
+[CATEGORY]
+Website, IT & Software -> Web Development / CRM Development
+
+[SKILLS / TAGS]
+React.js, Node.js, Express.js, MongoDB, Tailwind CSS, RESTful API, UI/UX Design
+
+[PROJECT DESCRIPTION]
+Engineered EstateFlow CRM—a modern, responsive real estate customer relationship and property management platform.
+
+Key Highlights & Deliverables:
+• Interactive Analytics Dashboard: Real-time visual metrics for sales pipeline, active listings, and lead conversion rates.
+• Property Management Module: Seamless filtering, dynamic search, listing updates, and photo galleries.
+• Lead Conversion Funnel: Drag-and-drag lead stage tracking (Inquiry, Viewing, Offer, Closed).
+• Modern UI/UX: Dark glassmorphic aesthetic built for high conversion and effortless navigation.
+
+Live Portfolio Link: https://portfolio-websitekk.netlify.app
+
+
+===================================================================
+RECOMMENDED 1600x1200 UPLOAD IMAGES IN THIS FOLDER:
+1. 1_DevOps_Cloud_Showcase_1600x1200.jpg
+2. 2_EstateFlow_CRM_Showcase_1600x1200.jpg
+3. 3_Frontend_Portfolio_Showcase_1600x1200.jpg
+===================================================================
