@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, ChevronRight, MapPin } from 'lucide-react';
+import { CheckCircle, ChevronRight, MapPin, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ContactWidget from '../components/ContactWidget';
 import SEO from '../components/SEO';
@@ -28,42 +28,21 @@ const Home = () => {
         schema={[localSchema, faqSchema]}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
-        {/* Top Free Study Material Announcement Ribbon */}
-        <div className="mb-4">
-          <Link 
-            to="/study-material" 
-            className="flex items-center justify-between flex-wrap gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-2xl shadow-lg border border-blue-400/40 hover:shadow-blue-500/20 transition-all group"
-          >
-            <div className="flex items-center gap-2">
-              <span className="bg-orange-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">
-                FREE STUDY MATERIAL
-              </span>
-              <span className="text-xs sm:text-sm font-bold text-slate-100">
-                📚 Partial Fractions 67-Page Master Handbook (JEE Main, Advanced & EAMCET Shortcuts)
-              </span>
-            </div>
-            <div className="inline-flex items-center gap-1 text-xs font-black text-orange-400 group-hover:text-orange-300">
-              <span>Download PDF</span>
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
           {/* Left Half - Content */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-12 py-12"
+            className="space-y-8 py-6 sm:py-10"
           >
             <div>
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-extrabold text-slate-900 mb-4 whitespace-nowrap overflow-hidden text-ellipsis">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 mb-4">
                 Top Home Tuitions in Hyderabad
               </h1>
-              <div className="text-lg text-orange-600 font-bold font-serif tracking-wide flex items-start gap-2">
-                <CheckCircle className="w-6 h-6 text-blue-600 shrink-0 mt-0.5" />
+              <div className="text-base sm:text-lg text-orange-600 font-bold font-serif tracking-wide flex items-start gap-2">
+                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 shrink-0 mt-0.5" />
                 <p className="leading-relaxed">
                   Excellent 100% Result oriented home/online tuitions, Guaranteed Success rate with affordable prices.
                 </p>
@@ -71,16 +50,16 @@ const Home = () => {
             </div>
 
             {/* Website Design Promo Banner */}
-            <div className="mt-8 px-2">
+            <div className="mt-6 px-1 sm:px-2">
               <Link to="/contact" className="block relative group overflow-hidden rounded-2xl shadow-xl border-2 border-orange-200">
                 <img 
                   src="/images/web_design_hero.jpg" 
                   alt="Website Designer" 
-                  className="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-44 sm:h-52 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-slate-900/60 group-hover:bg-slate-900/70 transition-colors flex flex-col items-center justify-center text-center p-4">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2 tracking-wide">Looking for a Website Designer?</h3>
-                  <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2 rounded-full font-black text-lg md:text-xl shadow-lg border border-orange-400 mb-3 transform group-hover:scale-105 transition-transform">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 tracking-wide">Looking for a Website Designer?</h3>
+                  <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-full font-black text-base sm:text-lg md:text-xl shadow-lg border border-orange-400 mb-3 transform group-hover:scale-105 transition-transform">
                     200/- per month with hosting
                   </div>
                   <div className="mt-1 flex items-center justify-center bg-white text-orange-600 font-bold px-4 py-1.5 rounded-full shadow-md text-sm hover:bg-orange-50 transition-colors">
@@ -90,40 +69,16 @@ const Home = () => {
               </Link>
             </div>
 
-            {/* Free Study Material Promo Banner */}
-            <div className="mt-6 px-2">
-              <Link to="/study-material" className="block relative group overflow-hidden rounded-2xl shadow-xl border-2 border-blue-300 bg-gradient-to-r from-blue-900 via-slate-900 to-indigo-950 p-6 text-white transform hover:-translate-y-1 transition-all">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="px-3 py-1 bg-orange-500 text-white rounded-full text-xs font-black uppercase tracking-wider">
-                    Free Download
-                  </span>
-                  <span className="text-xs font-bold text-blue-300">
-                    67 Pages • 160+ Solved Qs
-                  </span>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-black text-white mb-1">
-                  Partial Fractions Shortcut Handbook
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-300 mb-3">
-                  JEE Main, JEE Advanced & TS/AP EAMCET speed-solving methods & decision trees.
-                </p>
-                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-400 group-hover:text-orange-300">
-                  <span>Access Free Handbook</span>
-                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-            </div>
-
-            <div className="mt-8 flex gap-4 px-2">
+            <div className="mt-8 flex gap-4 px-1 sm:px-2">
               <img 
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" 
                 alt="Student Teacher Interaction" 
-                className="w-1/2 h-64 object-cover rounded-2xl shadow-lg border-2 border-white/60"
+                className="w-1/2 h-44 sm:h-56 md:h-64 object-cover rounded-2xl shadow-lg border-2 border-white/60"
               />
               <img 
                 src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" 
                 alt="Personalized Home Tuition" 
-                className="w-1/2 h-64 object-cover rounded-2xl shadow-lg border-2 border-white/60 translate-y-6"
+                className="w-1/2 h-44 sm:h-56 md:h-64 object-cover rounded-2xl shadow-lg border-2 border-white/60 translate-y-3 sm:translate-y-5"
               />
             </div>
           </motion.div>
@@ -133,10 +88,26 @@ const Home = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full relative lg:pl-10 mt-12 lg:mt-0"
+            className="w-full relative lg:pl-10 mt-8 lg:mt-0 flex flex-col"
           >
-            <div className="bg-slate-900 p-6 sm:p-8 rounded-2xl shadow-[0_0_40px_-10px_rgba(0,0,0,0.3)] border border-slate-800 ring-1 ring-white/5">
-              <h2 className="text-2xl font-bold text-white mb-6 text-center tracking-wide">
+            {/* Free Study Material Tab Just Above the Box */}
+            <div className="mb-6 flex justify-center w-full">
+              <Link 
+                to="/study-material" 
+                className="inline-flex items-center space-x-2.5 px-6 py-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold rounded-2xl shadow-[0_4px_20px_rgba(37,99,235,0.35)] hover:shadow-[0_6px_25px_rgba(37,99,235,0.45)] transition-all uppercase tracking-wide transform hover:-translate-y-1 border border-blue-400/40 ring-2 ring-blue-500/20 group w-full justify-center"
+                title="Free Study Material"
+              >
+                <BookOpen className="h-5 w-5 text-orange-400 group-hover:scale-110 transition-transform animate-pulse shrink-0" />
+                <span className="font-extrabold text-sm sm:text-base">Free Study Material</span>
+                <span className="bg-orange-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-tight shadow-sm">
+                  FREE PDF
+                </span>
+                <ChevronRight className="w-4 h-4 text-white/80 group-hover:translate-x-1 transition-transform ml-1" />
+              </Link>
+            </div>
+
+            <div className="bg-slate-900 p-5 sm:p-8 rounded-2xl shadow-[0_0_40px_-10px_rgba(0,0,0,0.3)] border border-slate-800 ring-1 ring-white/5">
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-6 text-center tracking-wide">
                 Choose the Right Tuitions for you?
               </h2>
               
@@ -159,11 +130,6 @@ const Home = () => {
               </div>
 
               <div className="flex flex-col space-y-3">
-                <Link to="/study-material" className="w-full py-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-800 text-white font-black rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 border border-blue-400/40 ring-2 ring-blue-500/20">
-                  <span className="text-sm uppercase tracking-wide">📚 Free Study Materials & Shortcuts</span>
-                  <span className="bg-orange-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full uppercase">PDF</span>
-                </Link>
-
                 <Link to="/register" className="w-full py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center transform hover:-translate-y-0.5">
                   Connect with Tutors
                 </Link>

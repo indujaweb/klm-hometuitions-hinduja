@@ -1,10 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, Eye, BookOpen, CheckCircle, Award, ArrowRight, Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Download, Eye, BookOpen, CheckCircle, Award, ArrowRight, Star, Lock } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { useAuth } from '../contexts/AuthContext';
 
 const StudyMaterial = () => {
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
   const pdfUrl = "/downloads/Partial_Fractions_Master_Handbook.pdf";
 
   const features = [
@@ -123,48 +127,78 @@ const StudyMaterial = () => {
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-3">
-                <a
-                  href={pdfUrl}
-                  download="KLM_Partial_Fractions_Master_Handbook.pdf"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl shadow-lg shadow-orange-500/25 transition-all text-sm uppercase tracking-wide transform hover:-translate-y-0.5"
-                >
-                  <Download className="w-4 h-4" />
-                  <span>Download Free PDF (2.8 MB)</span>
-                </a>
+                {isAuthenticated ? (
+                  <>
+                    <a
+                      href={pdfUrl}
+                      download="KLM_Partial_Fractions_Master_Handbook.pdf"
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl shadow-lg shadow-orange-500/25 transition-all text-sm uppercase tracking-wide transform hover:-translate-y-0.5"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>Download Free PDF (2.8 MB)</span>
+                    </a>
 
-                <a
-                  href={pdfUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-xl transition-all text-sm uppercase tracking-wide border border-slate-200 dark:border-slate-700"
-                >
-                  <Eye className="w-4 h-4" />
-                  <span>Preview in Browser</span>
-                </a>
+                    <a
+                      href={pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-xl transition-all text-sm uppercase tracking-wide border border-slate-200 dark:border-slate-700"
+                    >
+                      <Eye className="w-4 h-4" />
+                      <span>Preview in Browser</span>
+                    </a>
+                  </>
+                ) : (
+                  <Link
+                    to="/register"
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl shadow-lg shadow-orange-500/25 transition-all text-sm uppercase tracking-wide transform hover:-translate-y-0.5"
+                  >
+                    <Lock className="w-4 h-4" />
+                    <span>Login / Register to Download</span>
+                  </Link>
+                )}
               </div>
             </div>
 
             {/* Right Col: PDF Preview Card */}
             <div className="lg:col-span-5 flex flex-col justify-center">
               <div className="relative rounded-2xl overflow-hidden border-2 border-slate-200 dark:border-slate-700 shadow-2xl bg-white dark:bg-slate-950 group">
+                {!isAuthenticated && (
+                  <div className="absolute inset-0 z-20 backdrop-blur-md bg-slate-900/60 flex flex-col items-center justify-center p-6 text-center">
+                     <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-2xl max-w-[280px] w-full border border-slate-200 dark:border-slate-700 transform transition-transform hover:scale-105">
+                        <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center mx-auto mb-3">
+                           <Lock className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+                        </div>
+                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Members Only</h3>
+                        <p className="text-xs text-slate-600 dark:text-slate-400 mb-5">Create a free account to unlock the full PDF handbook instantly.</p>
+                        <Link to="/register" className="block w-full py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-lg shadow-md transition-all text-xs uppercase tracking-wide">
+                          Unlock PDF Now
+                        </Link>
+                     </div>
+                  </div>
+                )}
+                
                 <iframe
                   src={`${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0`}
                   title="PDF Preview"
-                  className="w-full h-[450px] sm:h-[500px] border-none"
+                  className={`w-full h-[450px] sm:h-[500px] border-none ${!isAuthenticated ? 'blur-sm pointer-events-none select-none' : ''}`}
                 />
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-transparent p-4 flex items-center justify-between text-white">
+                
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-transparent p-4 flex items-center justify-between text-white z-10">
                   <div className="text-xs font-semibold">
                     <span>Includes 7-Day Mastery Plan</span>
                   </div>
-                  <a
-                    href={pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-orange-400 hover:text-orange-300 font-bold"
-                  >
-                    <span>Full Screen</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
+                  {isAuthenticated && (
+                    <a
+                      href={pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs text-orange-400 hover:text-orange-300 font-bold"
+                    >
+                      <span>Full Screen</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
