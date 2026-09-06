@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KLM Home Tuitions - Instagram Flyer Studio</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap');
+    body { font-family: 'Poppins', sans-serif; }
+    .font-outfit { font-family: 'Outfit', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 md:p-8">
+  <div class="max-w-6xl mx-auto space-y-6">
+    <!-- Header -->
+    <header class="flex flex-col md:flex-row md:items-center md:justify-between pb-6 border-b border-slate-700 gap-4">
+      <div>
+        <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-1">
+          Social Media Studio
+        </span>
+        <h1 class="text-2xl md:text-3xl font-bold text-white tracking-tight">
+          KLM Home Tuitions & KLM-Tech
+        </h1>
+        <p class="text-slate-400 text-sm">
+          Customizable 1080x1080 Instagram Thumbnail & Flyer with instant PNG export
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="downloadBtn" class="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-500/20 flex items-center gap-2 transition active:scale-95">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Download Flyer (1080x1080)
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Preview Column (Left) -->
+      <div class="lg:col-span-7 flex flex-col items-center">
+        <div class="w-full max-w-[540px] aspect-square rounded-2xl overflow-hidden shadow-2xl border border-slate-700 bg-slate-950 relative group">
+          <canvas id="flyerCanvas" width="1080" height="1080" class="w-full h-full object-contain block"></canvas>
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+            <span class="bg-black/80 px-4 py-2 rounded-lg text-xs tracking-wider uppercase font-semibold text-amber-300">
+              Live 1080x1080 Canvas Preview
+            </span>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-3 text-center">
+          💡 Upload your custom logo or adjust texts in the panel to instantly re-render the flyer.
+        </p>
+      </div>
+
+      <!-- Controls Column (Right) -->
+      <div class="lg:col-span-5 space-y-5 bg-slate-800/80 border border-slate-700 rounded-2xl p-6 backdrop-blur-md">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
+          Flyer Customizer
+        </h2>
+
+        <!-- Custom Logo Upload -->
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+            Your Logo (Upload PNG/JPG)
+          </label>
+          <div class="flex items-center gap-3">
+            <input type="file" id="logoUpload" accept="image/*" class="hidden">
+            <label for="logoUpload" class="flex-1 py-2 px-3 border border-dashed border-slate-600 hover:border-amber-400 rounded-xl cursor-pointer text-center text-xs font-medium text-slate-300 hover:text-amber-400 bg-slate-900/60 transition">
+              <span id="logoFileName">Click to upload your logo file</span>
+            </label>
+            <button id="resetLogoBtn" class="text-xs text-slate-400 hover:text-red-400 px-2 py-1.5">Reset</button>
+          </div>
+        </div>
+
+        <!-- Phone Number -->
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+            Contact Number (Call / WhatsApp)
+          </label>
+          <input type="text" id="phoneInput" value="7386078298" class="w-full bg-slate-900 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none transition">
+        </div>
+
+        <!-- Tagline / Free Offer -->
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+            Primary Announcement Badge
+          </label>
+          <input type="text" id="freeBadgeInput" value="FREE REGISTRATION FOR TUTORS & PARENTS" class="w-full bg-slate-900 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none transition">
+        </div>
+
+        <!-- Classes & Boards -->
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+            School & Boards
+          </label>
+          <input type="text" id="boardsInput" value="Classes 1 to 12 | SSC, CBSE, ICSE, IB, IGCSE, ISC" class="w-full bg-slate-900 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none transition">
+        </div>
+
+        <!-- Competitive Exams -->
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+            Competitive & Higher Edu
+          </label>
+          <input type="text" id="competitiveInput" value="IIT-JEE (Mains & Adv) • EAMCET • NEET / Medical • Engg" class="w-full bg-slate-900 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none transition">
+        </div>
+
+        <!-- Tech & Pricing -->
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+            KLM-Tech Web Design Offer
+          </label>
+          <input type="text" id="techOfferInput" value="Website Designers starting @ ₹200/- only!" class="w-full bg-slate-900 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none transition">
+        </div>
+
+        <!-- Demo CTA -->
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+            Parent CTA
+          </label>
+          <input type="text" id="parentCtaInput" value="PARENTS: BOOK YOUR 100% FREE DEMO CLASS" class="w-full bg-slate-900 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none transition">
+        </div>
+
+        <!-- Color Themes -->
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+            Theme Style
+          </label>
+          <div class="grid grid-cols-3 gap-2">
+            <button class="theme-btn active border-2 border-amber-400 p-2 rounded-xl text-center text-xs font-medium bg-slate-900" data-theme="royal">
+              <span class="block w-4 h-4 rounded-full mx-auto mb-1 bg-gradient-to-r from-blue-700 to-amber-400"></span>
+              Royal Blue
+            </button>
+            <button class="theme-btn border border-slate-700 p-2 rounded-xl text-center text-xs font-medium bg-slate-900 hover:border-slate-500" data-theme="emerald">
+              <span class="block w-4 h-4 rounded-full mx-auto mb-1 bg-gradient-to-r from-teal-800 to-emerald-400"></span>
+              Emerald Tech
+            </button>
+            <button class="theme-btn border border-slate-700 p-2 rounded-xl text-center text-xs font-medium bg-slate-900 hover:border-slate-500" data-theme="midnight">
+              <span class="block w-4 h-4 rounded-full mx-auto mb-1 bg-gradient-to-r from-purple-900 to-pink-500"></span>
+              Midnight Gold
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('flyerCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // State
+    const state = {
+      phone: '7386078298',
+      freeBadge: 'FREE REGISTRATION FOR TUTORS & PARENTS',
+      boards: 'Classes 1 to 12 | SSC, CBSE, ICSE, IB, IGCSE, ISC',
+      competitive: 'IIT-JEE (Mains & Adv) • EAMCET • NEET / Medical • Engg',
+      techOffer: 'Website Designers starting @ ₹200/- only!',
+      parentCta: 'PARENTS: BOOK YOUR 100% FREE DEMO CLASS',
+      theme: 'royal',
+      customLogo: null
+    };
+
+    const themes = {
+      royal: {
+        bgTop: '#091e42',
+        bgBottom: '#020b18',
+        cardBg: 'rgba(15, 30, 65, 0.85)',
+        cardBorder: 'rgba(251, 191, 36, 0.4)',
+        primaryAccent: '#fbbf24', // Amber
+        secondaryAccent: '#38bdf8', // Sky
+        highlight: '#ffffff',
+        pillBg: '#1e3a8a',
+        bannerGrad: ['#fbbf24', '#d97706']
+      },
+      emerald: {
+        bgTop: '#064e3b',
+        bgBottom: '#022c22',
+        cardBg: 'rgba(6, 45, 36, 0.85)',
+        cardBorder: 'rgba(52, 211, 153, 0.4)',
+        primaryAccent: '#34d399',
+        secondaryAccent: '#6ee7b7',
+        highlight: '#ffffff',
+        pillBg: '#065f46',
+        bannerGrad: ['#34d399', '#059669']
+      },
+      midnight: {
+        bgTop: '#3b0764',
+        bgBottom: '#180228',
+        cardBg: 'rgba(45, 10, 75, 0.85)',
+        cardBorder: 'rgba(244, 114, 182, 0.4)',
+        primaryAccent: '#f472b6',
+        secondaryAccent: '#fbbf24',
+        highlight: '#ffffff',
+        pillBg: '#581c87',
+        bannerGrad: ['#ec4899', '#a855f7']
+      }
+    };
+
+    function drawFlyer() {
+      const t = themes[state.theme];
+      const W = 1080;
+      const H = 1080;
+
+      // 1. Background Gradient
+      const grad = ctx.createLinearGradient(0, 0, W, H);
+      grad.addColorStop(0, t.bgTop);
+      grad.addColorStop(1, t.bgBottom);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+
+      // Decorative Background circles / glowing mesh
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(W * 0.85, H * 0.15, 260, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(251, 191, 36, 0.08)';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(W * 0.15, H * 0.85, 320, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.06)';
+      ctx.fill();
+
+      // Border outline
+      ctx.lineWidth = 14;
+      ctx.strokeStyle = t.primaryAccent;
+      ctx.strokeRect(18, 18, W - 36, H - 36);
+
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+      ctx.strokeRect(32, 32, W - 64, H - 64);
+      ctx.restore();
+
+      // 2. Header Section
+      // Top Brand Bar
+      ctx.save();
+      const topBarGrad = ctx.createLinearGradient(40, 45, W - 40, 150);
+      topBarGrad.addColorStop(0, 'rgba(255, 255, 255, 0.08)');
+      topBarGrad.addColorStop(1, 'rgba(255, 255, 255, 0.02)');
+      ctx.fillStyle = topBarGrad;
+      roundRect(ctx, 50, 45, W - 100, 115, 18, true, false);
+
+      // Logo rendering (Custom or Default Emblem)
+      if (state.customLogo) {
+        try {
+          ctx.drawImage(state.customLogo, 65, 55, 95, 95);
+        } catch (e) {
+          drawDefaultLogo(ctx, 70, 60);
+        }
+      } else {
+        drawDefaultLogo(ctx, 70, 60);
+      }
+
+      // Brand Title
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 46px Poppins, sans-serif';
+      ctx.fillText('KLM HOME TUITIONS', 185, 102);
+
+      // Tech Sub-brand
+      ctx.font = '700 24px Poppins, sans-serif';
+      ctx.fillStyle = t.primaryAccent;
+      ctx.fillText('& KLM-TECH DIGITAL SOLUTIONS', 187, 138);
+
+      // Verified / ISO Badge on Right
+      ctx.textAlign = 'right';
+      ctx.fillStyle = 'rgba(255,255,255,0.9)';
+      ctx.font = '600 20px Poppins, sans-serif';
+      ctx.fillText('★ 100% TRUSTED', 1010, 95);
+      ctx.font = '500 16px Poppins, sans-serif';
+      ctx.fillStyle = 'rgba(255,255,255,0.6)';
+      ctx.fillText('Home & Online Tutors', 1010, 125);
+      ctx.restore();
+
+      // 3. Eye-Catching Big Offer Ribbon
+      ctx.save();
+      const ribbonGrad = ctx.createLinearGradient(50, 180, W - 50, 260);
+      ribbonGrad.addColorStop(0, t.bannerGrad[0]);
+      ribbonGrad.addColorStop(1, t.bannerGrad[1]);
+      ctx.fillStyle = ribbonGrad;
+      ctx.shadowColor = 'rgba(0,0,0,0.4)';
+      ctx.shadowBlur = 15;
+      ctx.shadowOffsetY = 6;
+      roundRect(ctx, 50, 175, W - 100, 76, 16, true, false);
+      ctx.restore();
+
+      ctx.save();
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#0f172a';
+      ctx.font = '900 32px Poppins, sans-serif';
+      ctx.fillText('🔥 ' + state.freeBadge.toUpperCase() + ' 🔥', W / 2, 224);
+      ctx.restore();
+
+      // 4. Middle Feature Cards Grid (Two Columns)
+      // Card 1: School & Boards (Left)
+      drawFeatureCard(ctx, 50, 275, 475, 230, {
+        title: 'ACADEMICS: CLASS 1 TO 12',
+        subtitle: 'All Major Curriculums & Boards',
+        accent: t.primaryAccent,
+        items: [
+          '• SSC, CBSE, ICSE, ISC, IB, IGCSE',
+          '• Maths, Physics, Chemistry, Biology',
+          '• English, Hindi, Telugu & All Languages',
+          '• Individual Attention & Regular Test Papers'
+        ]
+      });
+
+      // Card 2: Competitive Exams & Engg (Right)
+      drawFeatureCard(ctx, 555, 275, 475, 230, {
+        title: 'COMPETITIVE & HIGHER EDU',
+        subtitle: 'Specialized Expert Faculty',
+        accent: t.secondaryAccent,
+        items: [
+          '• IIT-JEE (Mains & Advanced)',
+          '• EAMCET & NEET (Medical Coaching)',
+          '• B.Tech / Engineering All Branches',
+          '• Degree, All University Subjects'
+        ]
+      });
+
+      // 5. Special Highlight Box: Website Designing @ 200/- + KLM Tech
+      ctx.save();
+      const techBoxGrad = ctx.createLinearGradient(50, 525, W - 50, 630);
+      techBoxGrad.addColorStop(0, 'rgba(30, 58, 138, 0.9)');
+      techBoxGrad.addColorStop(1, 'rgba(15, 23, 42, 0.95)');
+      ctx.fillStyle = techBoxGrad;
+      ctx.strokeStyle = t.primaryAccent;
+      ctx.lineWidth = 3;
+      roundRect(ctx, 50, 525, W - 100, 105, 16, true, true);
+
+      // Icon & Text
+      ctx.textAlign = 'left';
+      ctx.fillStyle = t.primaryAccent;
+      ctx.font = '800 22px Poppins, sans-serif';
+      ctx.fillText('💻 KLM-TECH : WEBSITE DESIGN & IT SERVICES', 80, 563);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '700 28px Poppins, sans-serif';
+      ctx.fillText(state.techOffer, 80, 603);
+
+      // Starting Tag Badge
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#10b981';
+      ctx.font = '800 24px Poppins, sans-serif';
+      ctx.fillText('⚡ FAST DELIVERY', 995, 565);
+      ctx.fillStyle = 'rgba(255,255,255,0.7)';
+      ctx.font = '500 18px Poppins, sans-serif';
+      ctx.fillText('Custom Web Design for Tutors & Businesses', 995, 600);
+      ctx.restore();
+
+      // 6. Tutors Required / Available Banner
+      ctx.save();
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.07)';
+      roundRect(ctx, 50, 648, W - 100, 95, 16, true, false);
+
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#fef08a';
+      ctx.font = '800 26px Poppins, sans-serif';
+      ctx.fillText('MALE & FEMALE TUTORS REQUIRED & AVAILABLE', W / 2, 688);
+
+      ctx.font = '500 20px Poppins, sans-serif';
+      ctx.fillStyle = '#e2e8f0';
+      ctx.fillText('Experienced Subject Experts for Home Visits & Online One-on-One Classes', W / 2, 722);
+      ctx.restore();
+
+      // 7. Parents Call To Action Banner
+      ctx.save();
+      const parentGrad = ctx.createLinearGradient(50, 760, W - 50, 835);
+      parentGrad.addColorStop(0, '#0284c7');
+      parentGrad.addColorStop(1, '#0369a1');
+      ctx.fillStyle = parentGrad;
+      roundRect(ctx, 50, 758, W - 100, 82, 16, true, false);
+
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 28px Poppins, sans-serif';
+      ctx.fillText('📢 ' + state.parentCta, W / 2, 810);
+      ctx.restore();
+
+      // 8. Bottom Big Contact Bar (Call & WhatsApp)
+      ctx.save();
+      const contactGrad = ctx.createLinearGradient(50, 860, W - 50, 1010);
+      contactGrad.addColorStop(0, '#15803d'); // Green for WhatsApp / Call
+      contactGrad.addColorStop(1, '#166534');
+      ctx.fillStyle = contactGrad;
+      ctx.shadowColor = 'rgba(0,0,0,0.5)';
+      ctx.shadowBlur = 18;
+      roundRect(ctx, 50, 855, W - 100, 165, 20, true, false);
+
+      // Call & WhatsApp text
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '700 22px Poppins, sans-serif';
+      ctx.fillText('📞 CALL OR WHATSAPP NOW FOR INSTANT ASSISTANCE', W / 2, 895);
+
+      // Giant Phone Number
+      ctx.fillStyle = '#fef08a';
+      ctx.font = '900 68px Poppins, sans-serif';
+      ctx.fillText(state.phone, W / 2, 965);
+
+      // Subtext
+      ctx.fillStyle = '#dcfce7';
+      ctx.font = '600 18px Poppins, sans-serif';
+      ctx.fillText('Available 24/7 • Fast Tutor Allotment • Transparent Pricing', W / 2, 1000);
+      ctx.restore();
+
+      // Outer Corner watermark
+      ctx.save();
+      ctx.textAlign = 'center';
+      ctx.font = '500 13px Poppins, sans-serif';
+      ctx.fillStyle = 'rgba(255,255,255,0.4)';
+      ctx.fillText('KLM HOME TUITIONS & TECH • INSTAGRAM POST • 7386078298', W / 2, 1052);
+      ctx.restore();
+    }
+
+    function drawFeatureCard(c, x, y, w, h, data) {
+      c.save();
+      c.fillStyle = 'rgba(15, 23, 42, 0.75)';
+      c.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+      c.lineWidth = 1.5;
+      roundRect(c, x, y, w, h, 16, true, true);
+
+      // Card Header
+      c.textAlign = 'left';
+      c.fillStyle = data.accent;
+      c.font = '800 22px Poppins, sans-serif';
+      c.fillText(data.title, x + 24, y + 42);
+
+      c.fillStyle = 'rgba(255, 255, 255, 0.6)';
+      c.font = '600 15px Poppins, sans-serif';
+      c.fillText(data.subtitle, x + 24, y + 68);
+
+      // Divider
+      c.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+      c.beginPath();
+      c.moveTo(x + 20, y + 82);
+      c.lineTo(x + w - 20, y + 82);
+      c.stroke();
+
+      // Bullets
+      c.font = '500 18px Poppins, sans-serif';
+      c.fillStyle = '#ffffff';
+      let textY = y + 115;
+      data.items.forEach(item => {
+        c.fillText(item, x + 24, textY);
+        textY += 32;
+      });
+      c.restore();
+    }
+
+    function drawDefaultLogo(c, x, y) {
+      c.save();
+      // Shield / Emblem Background
+      const logoGrad = c.createLinearGradient(x, y, x + 85, y + 85);
+      logoGrad.addColorStop(0, '#fbbf24');
+      logoGrad.addColorStop(1, '#d97706');
+      c.fillStyle = logoGrad;
+      c.beginPath();
+      c.arc(x + 42, y + 42, 42, 0, Math.PI * 2);
+      c.fill();
+
+      // KLM monogram
+      c.fillStyle = '#0f172a';
+      c.textAlign = 'center';
+      c.font = '900 28px Poppins, sans-serif';
+      c.fillText('KLM', x + 42, y + 52);
+      c.restore();
+    }
+
+    function roundRect(c, x, y, width, height, radius, fill, stroke) {
+      c.beginPath();
+      c.moveTo(x + radius, y);
+      c.lineTo(x + width - radius, y);
+      c.quadraticCurveTo(x + width, y, x + width, y + radius);
+      c.lineTo(x + width, y + height - radius);
+      c.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      c.lineTo(x + radius, y + height);
+      c.quadraticCurveTo(x, y + height, x, y + height - radius);
+      c.lineTo(x, y + radius);
+      c.quadraticCurveTo(x, y, x + radius, y);
+      c.closePath();
+      if (fill) c.fill();
+      if (stroke) c.stroke();
+    }
+
+    // Event Listeners
+    document.getElementById('phoneInput').addEventListener('input', (e) => {
+      state.phone = e.target.value;
+      drawFlyer();
+    });
+
+    document.getElementById('freeBadgeInput').addEventListener('input', (e) => {
+      state.freeBadge = e.target.value;
+      drawFlyer();
+    });
+
+    document.getElementById('techOfferInput').addEventListener('input', (e) => {
+      state.techOffer = e.target.value;
+      drawFlyer();
+    });
+
+    document.getElementById('parentCtaInput').addEventListener('input', (e) => {
+      state.parentCta = e.target.value;
+      drawFlyer();
+    });
+
+    // Theme buttons
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.theme-btn').forEach(b => {
+          b.classList.remove('border-amber-400', 'border-2');
+          b.classList.add('border-slate-700');
+        });
+        btn.classList.add('border-amber-400', 'border-2');
+        btn.classList.remove('border-slate-700');
+        state.theme = btn.dataset.theme;
+        drawFlyer();
+      });
+    });
+
+    // Logo Upload
+    const logoUpload = document.getElementById('logoUpload');
+    logoUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        document.getElementById('logoFileName').innerText = file.name;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const img = new Image();
+          img.onload = () => {
+            state.customLogo = img;
+            drawFlyer();
+          };
+          img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById('resetLogoBtn').addEventListener('click', () => {
+      state.customLogo = null;
+      document.getElementById('logoFileName').innerText = 'Click to upload your logo file';
+      logoUpload.value = '';
+      drawFlyer();
+    });
+
+    // Download Button
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.download = 'KLM_Home_Tuitions_Instagram_Flyer.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+
+    // Initial render
+    window.addEventListener('load', () => {
+      drawFlyer();
+    });
+    // Fallback immediate draw in case fonts are fast
+    setTimeout(drawFlyer, 100);
+  </script>
+</body>
+</html>
