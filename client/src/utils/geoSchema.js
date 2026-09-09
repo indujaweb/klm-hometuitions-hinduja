@@ -6,6 +6,11 @@ export const getLocalBusinessSchema = () => ({
   "url": "https://klmhometuitions.website",
   "telephone": "+91-7386078298",
   "priceRange": "₹₹",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "142"
+  },
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Hyderabad City Center",

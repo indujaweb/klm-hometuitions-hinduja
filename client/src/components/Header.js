@@ -58,71 +58,48 @@ const Header = () => {
 
 
       {/* Navigation */}
-      <nav className={`px-4 py-3 ${isScrolled ? 'bg-white/95 dark:bg-brand-navy/95' : 'bg-white/80 dark:bg-brand-navy/80 backdrop-blur-sm'}`}>
-        <div className="w-full max-w-7xl mx-auto flex items-center justify-between relative min-h-[4rem]">
+      <nav className={`px-2.5 sm:px-6 py-2.5 sm:py-3 ${isScrolled ? 'bg-white/95 dark:bg-brand-navy/95' : 'bg-white/80 dark:bg-brand-navy/80 backdrop-blur-sm'}`}>
+        <div className="w-full max-w-7xl mx-auto flex items-center justify-between relative min-h-[3.5rem] sm:min-h-[4rem] gap-2">
           {/* Left Section: Menu Button and Tech Solutions */}
-          <div className="flex items-center space-x-4 z-50">
+          <div className="flex items-center space-x-2 sm:space-x-3 shrink-0 z-20">
             {/* Menu button - Total Left Corner */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2.5 rounded-xl bg-slate-900 text-orange-400 hover:text-white hover:bg-slate-800 hover:shadow-orange-500/20 shadow-lg transition-all flex items-center justify-center border border-slate-800 ring-1 ring-white/5"
+              className="p-2 sm:p-2.5 rounded-xl bg-slate-900 text-orange-400 hover:text-white hover:bg-slate-800 hover:shadow-orange-500/20 shadow-lg transition-all flex items-center justify-center border border-slate-800 ring-1 ring-white/5"
+              aria-label="Toggle Navigation Menu"
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? <X className="h-5 w-5 sm:h-6 sm:w-6" /> : <Menu className="h-5 w-5 sm:h-6 sm:w-6" />}
             </button>
-            <a href="/contact#tech-solutions" className="hidden sm:flex items-center space-x-2 text-blue-500 hover:text-blue-400 transition-colors">
-              <Monitor className="h-5 w-5" />
-              <span className="font-bold text-lg tracking-wide">
+            <a href="/contact#tech-solutions" className="hidden md:flex items-center space-x-1.5 text-blue-500 hover:text-blue-400 transition-colors">
+              <Monitor className="h-4 w-4 lg:h-5 lg:w-5" />
+              <span className="font-bold text-sm lg:text-base tracking-wide whitespace-nowrap">
                 Tech Solutions
               </span>
             </a>
           </div>
 
-          {/* Center Text with Logo (Desktop) */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 z-0 hidden sm:flex items-center space-x-3 whitespace-nowrap">
-            <Link to="/" className="shrink-0">
-              <img src={logoImg} alt="KLM Home Tuitions Logo" className="h-9 w-9 md:h-11 md:w-11 object-contain shadow-sm rounded-lg" />
-            </Link>
-            <Link to="/" className="flex flex-col justify-center">
-              <h1 className="text-xl md:text-2xl font-extrabold tracking-tight drop-shadow-sm leading-none">
-                <span className="text-slate-900">KLM </span>
-                <span className="text-orange-600">Home Tuitions</span>
-              </h1>
-              <span className="text-xs md:text-sm text-blue-500 font-bold tracking-wide mt-0.5">
-                & Tech Solutions
-              </span>
-            </Link>
-          </div>
-          
-          {/* Center Text with Logo (Mobile) */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 z-0 sm:hidden flex items-center space-x-2 whitespace-nowrap">
-            <Link to="/" className="shrink-0">
-              <img src={logoImg} alt="KLM Home Tuitions Logo" className="h-8 w-8 object-contain shadow-sm rounded-lg" />
-            </Link>
-            <Link to="/" className="flex flex-col justify-center">
-              <h1 className="text-sm sm:text-base font-extrabold tracking-tight leading-none">
-                <span className="text-slate-900">KLM </span>
-                <span className="text-orange-600">Home Tuitions</span>
-              </h1>
-              <span className="text-[10px] text-blue-500 font-bold tracking-wide mt-0.5">
-                & Tech Solutions
-              </span>
+          {/* Center Brand / Logo (Responsive on Mobile, Tablet & Desktop) */}
+          <div className="flex-1 flex items-center justify-center min-w-0 px-1 sm:px-2 md:absolute md:left-1/2 md:-translate-x-1/2 md:flex-initial z-10">
+            <Link to="/" className="flex items-center space-x-1.5 sm:space-x-2.5 min-w-0 group">
+              <img 
+                src={logoImg} 
+                alt="KLM Home Tuitions Logo" 
+                className="h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 object-contain shadow-sm rounded-lg shrink-0 group-hover:scale-105 transition-transform" 
+              />
+              <div className="flex flex-col justify-center min-w-0">
+                <h1 className="text-xs sm:text-base md:text-xl font-extrabold tracking-tight drop-shadow-sm leading-none whitespace-nowrap truncate">
+                  <span className="text-slate-900 dark:text-white">KLM </span>
+                  <span className="text-orange-600">Home Tuitions</span>
+                </h1>
+                <span className="hidden sm:block text-[10px] sm:text-xs text-blue-500 font-bold tracking-wide mt-0.5 leading-none">
+                  & Tech Solutions
+                </span>
+              </div>
             </Link>
           </div>
 
-          {/* Right Section: Free Study Materials Tab & Free Registration */}
-          <div className="flex items-center space-x-2 sm:space-x-3 z-50">
-            <Link 
-              to="/study-material" 
-              className="flex items-center space-x-1.5 px-3 py-2 sm:px-4 sm:py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-black rounded-xl shadow-[0_4px_14px_0_rgba(37,99,235,0.39)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.23)] transition-all text-xs uppercase tracking-wide whitespace-nowrap transform hover:-translate-y-0.5 border border-blue-400/40 ring-2 ring-blue-500/20"
-            >
-              <BookOpen className="h-4 w-4 text-orange-400 animate-pulse shrink-0" />
-              <span className="hidden xs:inline sm:inline font-bold">Free Study Material</span>
-              <span className="xs:hidden sm:hidden font-bold">Study Material</span>
-              <span className="hidden md:inline-block bg-orange-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-tighter ml-1 shadow-sm">
-                PDF
-              </span>
-            </Link>
-
+          {/* Right Section: Free Registration */}
+          <div className="flex items-center space-x-1.5 sm:space-x-3 shrink-0 z-20">
             <Link 
               to="/register" 
               className="hidden lg:flex px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-xl shadow-[0_4px_14px_0_rgba(249,115,22,0.39)] hover:shadow-[0_6px_20px_rgba(249,115,22,0.23)] hover:from-orange-600 hover:to-orange-700 transition-all text-xs uppercase tracking-wide whitespace-nowrap transform hover:-translate-y-0.5"
